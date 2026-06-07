@@ -35,7 +35,7 @@ export default function Hero() {
       <div className="absolute inset-0 z-0 overflow-hidden">
         <motion.div className="absolute inset-0 z-0" style={{ y: bgY, scale: bgScale }}>
           <img
-            src="/images/exterior.jpg"
+            src="/images/exterior.webp"
             alt="Royal Inn Hotel exterior near New Bus Stand, Suratgarh, Rajasthan"
             className="h-full w-full object-cover text-transparent opacity-40 mix-blend-overlay"
             loading="eager"
