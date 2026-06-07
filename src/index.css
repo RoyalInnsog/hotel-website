@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+/* ─── Dark Mode Variant ─────────────────────────────── */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ─── Design Tokens ─────────────────────────────────── */
+@theme {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "DM Sans", system-ui, sans-serif;
+
+  --color-navy-950: #08111f;
+  --color-navy-900: #1b263b;
+  --color-navy-800: #22304a;
+  --color-navy-700: #243347;
+  --color-navy-600: #2e4361;
+  --color-navy-500: #3a5476;
+  --color-navy-400: #4f6d8f;
+  --color-navy-200: #9db4cb;
+  --color-navy-100: #c9d8e6;
+  --color-navy-50:  #edf2f7;
+
+  --color-gold-600: #b9966d;
+  --color-gold-500: #e0c9a6;
+  --color-gold-400: #ead8ba;
+  --color-gold-300: #f0dfc4;
+  --color-gold-200: #f6ead7;
+  --color-gold-100: #faf3e0;
+
+  --color-cream-50:  #fdfcf9;
+  --color-cream-100: #faf9f6;
+  --color-cream-200: #e8dfc8;
+  --color-cream-300: #d5c8a8;
+}
+
+/* ─── Base Styles ────────────────────────────────────── */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body,
+  #root {
+    background: #faf9f6;
+    transition:
+      background-color 700ms ease,
+      color 700ms ease,
+      border-color 700ms ease;
+  }
+
+  ::selection {
+    background-color: #e0c9a6;
+    color: #1b263b;
+  }
+
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #faf9f6;
+    transition: background-color 700ms ease;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: #e0c9a6;
+    border-radius: 3px;
+    transition: background-color 700ms ease;
+  }
+
+  .dark ::-webkit-scrollbar-track {
+    background: #1b263b;
+  }
+
+  :is(a, button, input, select, textarea, [role="button"]):focus-visible {
+    outline: 2px solid #e0c9a6 !important;
+    outline-offset: 3px;
+    box-shadow: 0 0 0 5px rgba(224, 201, 166, 0.18);
+  }
+}
+
+/* ─── Grain Noise Texture — Disabled for GPU/paint optimization ───────────────── */
+@layer utilities {
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(to right, transparent, #e0c9a644, #e0c9a6, #e0c9a644, transparent);
+  }
+
+  @keyframes pulseRing {
+    0% {
+      transform: scale(0.9);
+      box-shadow: 0 0 0 0 rgba(224, 201, 166, 0.7);
+    }
+    70% {
+      transform: scale(1);
+      box-shadow: 0 0 0 10px rgba(224, 201, 166, 0);
+    }
+    100% {
+      transform: scale(0.9);
+      box-shadow: 0 0 0 0 rgba(224, 201, 166, 0);
+    }
+  }
+
+  .pulse-ring {
+    animation: pulseRing 2s infinite cubic-bezier(0.66, 0, 0, 1);
+  }
+
+  /* Professional focus ring for keyboard navigation */
+  .focus-gold:focus-visible {
+    outline: 2px solid #e0c9a6;
+    outline-offset: 2px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
